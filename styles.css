@@ -1,0 +1,127 @@
+/* TermiType - Terminal Aesthetic Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-dark: #070a12;
+    --card-bg: #0d1322;
+    --card-border: #1a243a;
+    --cyan-accent: #00d2ff;
+    --emerald-accent: #10b981;
+    --crimson-accent: #ef4444;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: #cbd5e1;
+}
+
+.font-mono-terminal {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+/* Caret blinking neon cyan styling */
+.caret-active {
+    position: relative;
+    background-color: rgba(0, 210, 255, 0.25);
+    border-left: 2px solid var(--cyan-accent);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+    animation: pulseCaret 1s infinite alternate;
+}
+
+@keyframes pulseCaret {
+    0% {
+        border-color: var(--cyan-accent);
+        box-shadow: 0 0 12px rgba(0, 210, 255, 0.8);
+    }
+    100% {
+        border-color: transparent;
+        box-shadow: none;
+    }
+}
+
+/* Correct Character styling with emerald glow */
+.char-correct {
+    color: #34d399; /* emerald-400 */
+    text-shadow: 0 0 6px rgba(52, 211, 153, 0.3);
+    font-weight: 600;
+}
+
+/* Incorrect Character styling with crimson background */
+.char-incorrect {
+    color: #f87171; /* red-400 */
+    background-color: rgba(220, 38, 38, 0.35);
+    border-bottom: 2px solid #ef4444;
+    font-weight: 700;
+}
+
+/* Untyped character styling */
+.char-untyped {
+    color: #475569; /* slate-600 */
+}
+
+/* Glassmorphism containers */
+.glass-card {
+    background: rgba(13, 19, 34, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+    border-color: rgba(0, 210, 255, 0.4);
+    box-shadow: 0 8px 30px rgba(0, 210, 255, 0.1);
+}
+
+/* Custom Scrollbar for Terminal */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #090e1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00d2ff;
+}
+
+/* Key animation pulse */
+@keyframes keyTap {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.94); }
+    100% { transform: scale(1); }
+}
+
+.animate-key-tap {
+    animation: keyTap 0.15s ease-in-out;
+}
+
+/* Glowing text helpers */
+.glow-text-cyan {
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+.glow-text-emerald {
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+/* Modal backdrop animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.animate-modal {
+    animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
