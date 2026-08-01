@@ -49,9 +49,3 @@ DBA_Oracle/
 │   └── app.js          # Main UI controller & event listeners
 └── README.md           # Project documentation (English)
 ```
-
----
-
-## 🌐 How to Run
-
-Simply open `index.html` directly in any web browser (double-click `index.html` or use *Open with Live Server*). No Node.js installation or web server setup is required!
