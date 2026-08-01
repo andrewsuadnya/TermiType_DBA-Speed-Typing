@@ -1,7 +1,8 @@
-/* TermiType - Terminal Aesthetic Design System */
+/* TermiType - Terminal Aesthetic Design System & Theme Engine */
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
+/* --- DEFAULT THEME: Cyber Blue (Original Neon Cyberpunk) --- */
 :root {
     --bg-dark: #070a12;
     --card-bg: #0d1322;
@@ -12,9 +13,10 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--bg-dark);
     color: #cbd5e1;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .font-mono-terminal {
@@ -61,20 +63,13 @@ body {
     color: #475569; /* slate-600 */
 }
 
-/* Glassmorphism containers */
-.glass-card {
-    background: rgba(13, 19, 34, 0.85);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+/* Glowing text helpers */
+.glow-text-cyan {
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
 }
 
-.glass-card-hover {
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-card-hover:hover {
-    border-color: rgba(0, 210, 255, 0.4);
-    box-shadow: 0 8px 30px rgba(0, 210, 255, 0.1);
+.glow-text-emerald {
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
 }
 
 /* Custom Scrollbar for Terminal */
@@ -107,15 +102,6 @@ body {
     animation: keyTap 0.15s ease-in-out;
 }
 
-/* Glowing text helpers */
-.glow-text-cyan {
-    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-}
-
-.glow-text-emerald {
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-}
-
 /* Modal backdrop animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.96); }
@@ -124,4 +110,180 @@ body {
 
 .animate-modal {
     animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+/* ==========================================================================
+   THEME OVERRIDES 1: Minimal Dark (Pitch-Black Charcoal Clean)
+   ========================================================================== */
+body[data-theme="dark-minimal"] {
+    background-color: #09090b !important;
+    color: #e4e4e7 !important;
+}
+
+body[data-theme="dark-minimal"] header {
+    background-color: rgba(9, 9, 11, 0.95) !important;
+    border-color: #27272a !important;
+}
+
+body[data-theme="dark-minimal"] .logo-box {
+    background: #18181b !important;
+    border-color: #27272a !important;
+    color: #f4f4f5 !important;
+    box-shadow: none !important;
+}
+
+body[data-theme="dark-minimal"] .title-badge {
+    background-color: #18181b !important;
+    color: #d4d4d8 !important;
+    border-color: #27272a !important;
+}
+
+body[data-theme="dark-minimal"] .card-box {
+    background-color: #121215 !important;
+    border-color: #27272a !important;
+    box-shadow: none !important;
+}
+
+body[data-theme="dark-minimal"] .card-inner-box {
+    background-color: #18181b !important;
+    border-color: #27272a !important;
+}
+
+body[data-theme="dark-minimal"] .select-box {
+    background-color: #18181b !important;
+    border-color: #27272a !important;
+    color: #f4f4f5 !important;
+}
+
+body[data-theme="dark-minimal"] .btn-nav {
+    background-color: #18181b !important;
+    border-color: #27272a !important;
+    color: #e4e4e7 !important;
+}
+
+body[data-theme="dark-minimal"] .caret-active {
+    background-color: rgba(244, 244, 245, 0.15) !important;
+    border-left: 2.5px solid #f4f4f5 !important;
+    box-shadow: none !important;
+    animation: blinkCaret 1s step-end infinite !important;
+}
+
+@keyframes blinkCaret {
+    0%, 100% { border-color: #f4f4f5; }
+    50% { border-color: transparent; }
+}
+
+body[data-theme="dark-minimal"] .char-correct {
+    color: #4ade80 !important;
+    text-shadow: none !important;
+}
+
+body[data-theme="dark-minimal"] .char-untyped {
+    color: #52525b !important;
+}
+
+body[data-theme="dark-minimal"] .glow-text-cyan,
+body[data-theme="dark-minimal"] .glow-text-emerald {
+    text-shadow: none !important;
+}
+
+body[data-theme="dark-minimal"] .ambient-glow {
+    display: none !important;
+}
+
+body[data-theme="dark-minimal"] .btn-primary-action {
+    background: #f4f4f5 !important;
+    color: #09090b !important;
+    box-shadow: none !important;
+}
+
+body[data-theme="dark-minimal"] .progress-bar-line {
+    background: #a1a1aa !important;
+}
+
+body[data-theme="dark-minimal"] footer {
+    background-color: #09090b !important;
+    border-color: #18181b !important;
+    color: #71717a !important;
+}
+
+/* ==========================================================================
+   THEME OVERRIDES 2: Matrix Green (Classic Green Hacker Terminal)
+   ========================================================================== */
+body[data-theme="matrix-green"] {
+    background-color: #050a05 !important;
+    color: #86efac !important;
+}
+
+body[data-theme="matrix-green"] header {
+    background-color: rgba(10, 18, 10, 0.95) !important;
+    border-color: #1c331c !important;
+}
+
+body[data-theme="matrix-green"] .logo-box {
+    background: #122012 !important;
+    border-color: #22c55e !important;
+    color: #22c55e !important;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.3) !important;
+}
+
+body[data-theme="matrix-green"] .title-badge {
+    background-color: #122012 !important;
+    color: #4ade80 !important;
+    border-color: #22c55e !important;
+}
+
+body[data-theme="matrix-green"] .card-box {
+    background-color: #0d170d !important;
+    border-color: #1c331c !important;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.08) !important;
+}
+
+body[data-theme="matrix-green"] .card-inner-box {
+    background-color: #122012 !important;
+    border-color: #1c331c !important;
+}
+
+body[data-theme="matrix-green"] .select-box {
+    background-color: #122012 !important;
+    border-color: #22c55e !important;
+    color: #4ade80 !important;
+}
+
+body[data-theme="matrix-green"] .btn-nav {
+    background-color: #122012 !important;
+    border-color: #1c331c !important;
+    color: #4ade80 !important;
+}
+
+body[data-theme="matrix-green"] .caret-active {
+    background-color: rgba(34, 197, 94, 0.25) !important;
+    border-left: 2px solid #22c55e !important;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6) !important;
+}
+
+body[data-theme="matrix-green"] .char-correct {
+    color: #4ade80 !important;
+    text-shadow: 0 0 6px rgba(74, 222, 128, 0.4) !important;
+}
+
+body[data-theme="matrix-green"] .char-untyped {
+    color: #166534 !important;
+}
+
+body[data-theme="matrix-green"] .glow-text-cyan,
+body[data-theme="matrix-green"] .glow-text-emerald {
+    color: #4ade80 !important;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 0.5) !important;
+}
+
+body[data-theme="matrix-green"] .btn-primary-action {
+    background: #22c55e !important;
+    color: #050a05 !important;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.4) !important;
+}
+
+body[data-theme="matrix-green"] .progress-bar-line {
+    background: #22c55e !important;
 }

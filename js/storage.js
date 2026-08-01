@@ -87,7 +87,8 @@ class StorageManager {
         const defaults = {
             soundEnabled: true,
             fontSize: 'text-xl',
-            selectedCategory: 'all'
+            selectedCategory: 'all',
+            theme: 'dark-minimal'
         };
         try {
             const data = localStorage.getItem(STORAGE_KEYS.SETTINGS);

@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnToggleSound = document.getElementById('btn-toggle-sound');
     const soundIcon = document.getElementById('sound-icon');
     const btnFontSize = document.getElementById('btn-font-size');
+    const themeSelect = document.getElementById('theme-select');
 
     let currentFontSizeIndex = 1; // 0: text-lg, 1: text-xl, 2: text-2xl
     const fontSizes = ['text-lg', 'text-xl', 'text-2xl'];
@@ -65,6 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALIZATION ---
     function init() {
+        const settings = StorageManager.getSettings();
+        applyTheme(settings.theme || 'dark-minimal');
+        if (themeSelect) {
+            themeSelect.value = settings.theme || 'dark-minimal';
+            themeSelect.addEventListener('change', (e) => {
+                const chosenTheme = e.target.value;
+                applyTheme(chosenTheme);
+                const currentSettings = StorageManager.getSettings();
+                StorageManager.saveSettings({ ...currentSettings, theme: chosenTheme });
+            });
+        }
+
         renderCategoryBadges();
         populateLessonSelect();
         loadLesson(allLessons[0].id);
@@ -138,13 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => hiddenInput.focus(), 100);
     }
 
+    function applyTheme(themeName) {
+        document.body.setAttribute('data-theme', themeName);
+    }
+
     // --- RENDER FUNCTIONS ---
 
     function renderCategoryBadges() {
         categoryContainer.innerHTML = LESSON_CATEGORIES.map(cat => `
             <button data-cat="${cat.id}" class="cat-badge px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer border ${
                 currentCategory === cat.id 
-                ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/50 shadow-sm shadow-cyan-500/20' 
+                ? 'cat-badge-active bg-cyan-500/20 text-cyan-300 border-cyan-500/50 shadow-sm shadow-cyan-500/20 font-semibold' 
                 : 'bg-slate-800/60 text-slate-400 border-slate-700/60 hover:text-slate-200 hover:border-slate-600'
             }">
                 ${cat.name}
@@ -395,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         historyList.innerHTML = history.map(item => `
-            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex justify-between items-center hover:border-cyan-500/40 transition-colors">
+            <div class="card-inner-box bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex justify-between items-center hover:border-cyan-500/40 transition-colors">
                 <div>
                     <div class="font-semibold text-slate-200 text-sm mb-1">${escapeHtml(item.lessonTitle)}</div>
                     <div class="text-xs text-slate-500 flex space-x-3">
@@ -405,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
                 <div class="text-right">
-                    <div class="text-lg font-bold text-cyan-400 font-mono">${item.wpm} WPM</div>
+                    <div class="text-lg font-bold text-cyan-400 font-mono glow-text-cyan">${item.wpm} WPM</div>
                     <div class="text-xs text-amber-400 font-medium">${item.accuracy}% Acc</div>
                 </div>
             </div>
